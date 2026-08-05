@@ -119,9 +119,9 @@ def test_borrowers_are_creditworthy_enough_to_be_realistic(deals):
     for deal in deals:
         for y in deal.financials:
             assert y.cash > 0, f"{deal.deal_id} FY{y.fiscal_year} has negative cash"
-            assert y.total_equity > 0, (
-                f"{deal.deal_id} FY{y.fiscal_year} negative equity"
-            )
+            assert (
+                y.total_equity > 0
+            ), f"{deal.deal_id} FY{y.fiscal_year} negative equity"
             assert y.ebitda > 0
             assert 0.3 <= y.leverage <= 8.0, f"{deal.deal_id} leverage {y.leverage}"
 
@@ -207,9 +207,9 @@ def test_every_defect_appears_even_in_a_tiny_ci_corpus(tmp_path):
             write_pdfs=False,
         )
         for defect in ALL_DEFECTS:
-            assert manifest.defect_index[defect], (
-                f"defect {defect} missing from a {n}-deal corpus"
-            )
+            assert manifest.defect_index[
+                defect
+            ], f"defect {defect} missing from a {n}-deal corpus"
 
 
 def test_defect_payloads_exist_when_the_defect_is_assigned(deals):

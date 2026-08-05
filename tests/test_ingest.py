@@ -112,9 +112,9 @@ def test_every_pdf_page_produces_exactly_one_record(ingested):
             expected = doc.page_count
             doc.close()
             got = sorted(by_document.get(pdf_path.name, []))
-            assert got == list(range(1, expected + 1)), (
-                f"{deal}/{pdf_path.name}: expected pages 1..{expected}, got {got}"
-            )
+            assert got == list(
+                range(1, expected + 1)
+            ), f"{deal}/{pdf_path.name}: expected pages 1..{expected}, got {got}"
 
 
 def test_pages_are_routed_by_text_layer_not_by_filename(ingested):
@@ -135,9 +135,9 @@ def test_pages_are_routed_by_text_layer_not_by_filename(ingested):
 def test_no_page_comes_back_empty(ingested):
     """A page with no text is a page the pipeline cannot answer from."""
     for record in _all_pages(ingested):
-        assert record["text"].strip(), (
-            f"{record['deal_id']}/{record['document']}#{record['page_number']} is empty"
-        )
+        assert (
+            record["text"].strip()
+        ), f"{record['deal_id']}/{record['document']}#{record['page_number']} is empty"
         assert record["word_count"] > 0
 
 
@@ -200,9 +200,9 @@ def test_clean_deals_have_no_rotated_pages(ingested):
     for deal, records in ingested["pages"].items():
         if deal == carrier:
             continue
-        assert all(r["rotation_applied"] == 0 for r in records), (
-            f"{deal} has a spurious rotation"
-        )
+        assert all(
+            r["rotation_applied"] == 0 for r in records
+        ), f"{deal} has a spurious rotation"
 
 
 def test_orientation_correction_is_load_bearing(ingested):
@@ -225,9 +225,9 @@ def test_orientation_correction_is_load_bearing(ingested):
     raw_text, _, _ = _ocr_once(image)
 
     marker = "Commercial Analysis Checking"
-    assert marker.lower() in corrected["text"].lower(), (
-        "corrected page lost its heading"
-    )
+    assert (
+        marker.lower() in corrected["text"].lower()
+    ), "corrected page lost its heading"
     assert marker.lower() not in raw_text.lower(), (
         "the uncorrected page was already readable -- the rotation defect is "
         "no longer being planted, or the test is checking the wrong page"
