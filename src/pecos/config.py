@@ -92,6 +92,17 @@ class Settings:
     evals_dir: Path = field(
         default_factory=lambda: Path(_env_str("PC_EVALS_DIR", str(REPO_ROOT / "evals")))
     )
+    # --- Anthropic (M6) --------------------------------------------------
+    # Read here like everything else, but never printed. See public_dict.
+    anthropic_api_key: str | None = field(
+        default_factory=lambda: os.environ.get("ANTHROPIC_API_KEY")
+    )
+    judge_model: str = field(
+        default_factory=lambda: _env_str("PC_JUDGE_MODEL", "claude-haiku-4-5-20251001")
+    )
+    answer_model: str = field(
+        default_factory=lambda: _env_str("PC_ANSWER_MODEL", "claude-haiku-4-5-20251001")
+    )
 
     # --- Vector / relational store ---------------------------------------
     # Port 5435 deliberately: P2 (bluebonnet) uses 5433 and P4 (lonestar) uses
