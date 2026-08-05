@@ -1,0 +1,22 @@
+# Local stack for Pecos. Port 5435 avoids collisions with bluebonnet (5433)
+# and lonestar (5434), so all three portfolio projects can run at once.
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: pecos-postgres
+    environment:
+      POSTGRES_DB: ${PC_PG_DB:-pecos}
+      POSTGRES_USER: ${PC_PG_USER:-pecos}
+      POSTGRES_PASSWORD: ${PC_PG_PASSWORD:-pecos_local_dev}
+    ports:
+      - "${PC_PG_PORT:-5435}:5432"
+    volumes:
+      - pecos_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PC_PG_USER:-pecos}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  pecos_pgdata:

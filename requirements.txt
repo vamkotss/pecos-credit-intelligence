@@ -1,0 +1,33 @@
+# --- M1: scaffold ------------------------------------------------------
+pytest==8.3.4
+ruff==0.8.4
+
+# --- M2: corpus generation (installed at M2, listed now for visibility) -
+# reportlab==4.2.5          # renders synthetic statements to real PDFs
+# pypdf==5.1.0              # page assembly and rotation
+# Faker==33.1.0             # borrower names, addresses, dates
+# numpy==2.2.1              # seeded financial figure generation
+
+# --- M3: ingestion -----------------------------------------------------
+# pytesseract==0.3.13       # Tesseract OCR bindings
+# pdf2image==1.17.0         # PDF -> image via Poppler
+# Pillow==11.0.0            # deskew, denoise
+# camelot-py==0.11.0        # table extraction
+# opencv-python-headless==4.10.0.84
+
+# --- M4/M5: chunking and retrieval -------------------------------------
+# tiktoken==0.8.0
+# rank-bm25==0.2.2
+# sentence-transformers==3.3.1
+# psycopg[binary]==3.2.3
+# pgvector==0.3.6
+
+# --- M6: evaluation ----------------------------------------------------
+# ragas==0.2.9
+# datasets==3.2.0
+
+# --- M7-M9: agent, guardrails, routing ---------------------------------
+# langgraph==0.2.60
+# langchain-openai==0.2.14
+# openai==1.59.3
+# langfuse==2.57.0

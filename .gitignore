@@ -1,0 +1,38 @@
+# --- Secrets -----------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# --- Data (regenerate with the seeded generator, never commit) ----------
+data/
+!data/.gitkeep
+reports/*.json
+reports/*.html
+reports/*.png
+!reports/.gitkeep
+
+# --- Python ------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# --- Model / OCR caches (these live on D:, not in the repo) ------------
+.cache/
+models/*.bin
+models/*.safetensors
+
+# --- Tooling -----------------------------------------------------------
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+langfuse_data/
+pgdata/
