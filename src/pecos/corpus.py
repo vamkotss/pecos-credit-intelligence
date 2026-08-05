@@ -415,6 +415,32 @@ class AgingBucket:
 
 
 @dataclass(frozen=True)
+class BankMonth:
+    """One month of the operating account, as it appears on a statement.
+
+    These figures used to be computed inside the renderer. They were moved here
+    because ground truth cannot cite a number the model does not know about, and
+    an M5 retrieval eval exposed the consequence: the only fact registered
+    against the bank statements was the bank name and account suffix, which
+    appear identically on all six pages. The gold page was therefore arbitrary,
+    and retrieving page 1 instead of page 3 scored as a failure when it was
+    nothing of the kind.
+
+    A per-month closing balance is unique to its page, which makes the rotated
+    page a real retrieval target -- and one that can only be hit if orientation
+    correction and OCR both worked.
+    """
+
+    month: int
+    opening: int
+    deposits: int
+    withdrawals: int
+    closing: int
+    average: int
+    items: int
+
+
+@dataclass(frozen=True)
 class Customer:
     name: str
     balance: int
@@ -443,6 +469,7 @@ class Deal:
     loans: tuple[Loan, ...]
     aging: tuple[AgingBucket, ...]
     customers: tuple[Customer, ...]
+    bank_months: tuple[BankMonth, ...]
     defects: tuple[str, ...]
     # Restatement defect payload: the EBITDA figure the OLD document shows for
     # the earliest fiscal year, which disagrees with the comparative statements.
@@ -852,6 +879,29 @@ def _build_receivables(
     return aging, customers
 
 
+def _build_bank_months(latest: YearFinancials, count: int = 6) -> list[BankMonth]:
+    """Six months of operating account activity, tied to the year-end cash
+    balance so the scanned statements never contradict the balance sheet."""
+    months: list[BankMonth] = []
+    for month in range(1, count + 1):
+        opening = int(latest.cash * (0.82 + 0.05 * month))
+        deposits = int(latest.revenue / 12)
+        withdrawals = int(deposits * 0.93)
+        closing = opening + deposits - withdrawals
+        months.append(
+            BankMonth(
+                month=month,
+                opening=opening,
+                deposits=deposits,
+                withdrawals=withdrawals,
+                closing=closing,
+                average=(opening + closing) // 2,
+                items=180 + month * 7,
+            )
+        )
+    return months
+
+
 def build_deal(spec: CorpusSpec, index: int) -> Deal:
     """Build one complete deal.
 
@@ -927,6 +977,7 @@ def build_deal(spec: CorpusSpec, index: int) -> Deal:
         loans=tuple(loans),
         aging=tuple(aging),
         customers=tuple(customers),
+        bank_months=tuple(_build_bank_months(financials[-1])),
         defects=assigned,
         stale_ebitda=stale_ebitda,
         draft_ebitda=draft_ebitda,
@@ -1140,18 +1191,25 @@ def build_gold_facts(
         )
 
     if DEFECT_ROTATED_SCAN in deal.defects:
+        # The figure asked for is unique to page 3, which is the rotated one.
+        # An earlier version asked for the bank name and account suffix, both of
+        # which appear on all six pages -- so the gold page was arbitrary and the
+        # M5 retrieval eval scored a correct answer as a miss.
+        month = deal.bank_months[2]
         add(
-            question="What is the borrower's operating bank and account number suffix?",
-            answer_value=None,
-            answer_unit="text",
-            answer_text=f"{deal.loans[0].lender}, account ending {deal.deal_id[-4:]}",
+            question=(
+                "What was the ending balance on the bank statement for month 03?"
+            ),
+            answer_value=month.closing,
+            answer_unit="USD",
+            answer_text=f"${month.closing:,}",
             fact_type="bank_statement",
             source_document="08_bank_statements.pdf",
             source_page=3,
             defect_tag=DEFECT_ROTATED_SCAN,
             notes=(
-                "Page 3 is scanned and rotated 90 degrees. "
-                "Requires OCR with orientation handling."
+                "Page 3 is scanned and rotated 90 degrees. Answerable only if "
+                "orientation correction and OCR both worked."
             ),
         )
 

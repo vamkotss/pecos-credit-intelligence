@@ -729,11 +729,13 @@ def render_bank_statements(deal: Deal, path: Path) -> dict[str, int]:
         story: list = []
         # Monthly balances derived from the year-end cash figure so the scanned
         # statements do not contradict the balance sheet.
-        for month in range(1, 7):
-            opening = int(latest.cash * (0.82 + 0.05 * month))
-            deposits = int(latest.revenue / 12)
-            withdrawals = int(deposits * 0.93)
-            closing = opening + deposits - withdrawals
+        # Figures come from the deal model rather than being computed here, so
+        # the ground-truth manifest can cite them. A renderer that invents facts
+        # produces documents nothing can be scored against.
+        for entry in deal.bank_months:
+            month = entry.month
+            opening, closing = entry.opening, entry.closing
+            deposits, withdrawals = entry.deposits, entry.withdrawals
             story.append(Paragraph(bank.upper(), _H1))
             story.append(
                 Paragraph(
@@ -754,12 +756,12 @@ def render_bank_statements(deal: Deal, path: Path) -> dict[str, int]:
                 ["Total deposits and credits", money(deposits)],
                 ["Total withdrawals and debits", money(-withdrawals)],
                 ["Ending balance", money(closing)],
-                ["Average collected balance", money((opening + closing) // 2)],
-                ["Items deposited", str(180 + month * 7)],
+                ["Average collected balance", money(entry.average)],
+                ["Items deposited", str(entry.items)],
                 ["Insufficient funds occurrences", "0"],
             ]
             story.append(_table(rows, first_col_width=3.4))
-            if month < 6:
+            if month < len(deal.bank_months):
                 story.append(PageBreak())
         _doc_buf = SimpleDocTemplate(
             buf,

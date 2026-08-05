@@ -118,7 +118,14 @@ _MILLIONS_PATTERNS = (
 
 @dataclass(frozen=True)
 class Word:
-    """One OCR'd word with its box and confidence, in pixel coordinates."""
+    """One OCR'd word with its box and confidence, in pixel coordinates.
+
+    `line_id` is Tesseract's own (block, paragraph, line) grouping when the word
+    came from OCR, and None when it came from a PDF text layer. It matters
+    because Tesseract's layout analysis handles page skew properly, and the
+    geometric fallback used for PDF words does not do so as well -- see
+    `_group_into_lines`.
+    """
 
     text: str
     left: int
@@ -126,6 +133,7 @@ class Word:
     width: int
     height: int
     confidence: float
+    line_id: tuple[int, int, int] | None = None
 
 
 @dataclass(frozen=True)
@@ -356,6 +364,11 @@ def _ocr_once(image: Image.Image) -> tuple[str, list[Word], float]:
                 width=int(data["width"][i]),
                 height=int(data["height"][i]),
                 confidence=conf,
+                line_id=(
+                    int(data["block_num"][i]),
+                    int(data["par_num"][i]),
+                    int(data["line_num"][i]),
+                ),
             )
         )
     mean_conf = statistics.mean(w.confidence for w in words) if words else 0.0
@@ -413,6 +426,25 @@ def _group_into_lines(words: list[Word]) -> list[list[Word]]:
     """
     if not words:
         return []
+
+    # Prefer the OCR engine's own line grouping when it is available.
+    #
+    # Tesseract runs real layout analysis, including skew estimation, before it
+    # assigns words to lines. The geometric fallback below cannot match that,
+    # and the gap showed up as a live bug: on a bank statement page with a wide
+    # label-to-amount column gap and a large skew, the geometric grouping split
+    # every row in two. Median line span collapsed, the orientation score fell
+    # from 75 to 9, and the page was "corrected" into being sideways.
+    #
+    # The fallback still runs for pdfplumber words, which carry no line ids --
+    # and digital pages have no skew for it to mishandle.
+    if all(word.line_id is not None for word in words):
+        grouped: dict[tuple[int, int, int], list[Word]] = {}
+        for word in words:
+            grouped.setdefault(word.line_id, []).append(word)  # type: ignore[arg-type]
+        lines = [sorted(line, key=lambda w: w.left) for line in grouped.values()]
+        lines.sort(key=lambda line: min(w.top for w in line))
+        return lines
 
     lines: list[list[Word]] = []
     for word in sorted(words, key=lambda w: (w.left, w.top)):
