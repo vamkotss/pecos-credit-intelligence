@@ -1,6 +1,6 @@
 [project]
 name = "pecos-credit-intelligence"
-version = "0.1.0"
+version = "0.3.0"
 description = "Document intelligence for middle-market commercial lending: OCR, hybrid retrieval, evaluated RAG, and a grounded credit-memo agent."
 requires-python = ">=3.12"
 
@@ -17,7 +17,6 @@ select = ["E", "W", "F", "I", "B", "C4", "UP"]
 [tool.ruff.lint.isort]
 known-first-party = ["pecos"]
 
-[tool.pytest.ini_options]
 [tool.pytest.ini_options]
 markers = [
     "slow: renders PDFs or runs OCR; slower than the pure-python tests",
