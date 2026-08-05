@@ -31,3 +31,17 @@ ruff==0.8.4
 # langchain-openai==0.2.14
 # openai==1.59.3
 # langfuse==2.57.0
+
+# --- Added at Milestone 2 (corpus generation) ---
+# Pinned exactly: an unpinned ReportLab or Pillow can change layout or JPEG
+# encoding, which moves text onto a different page and silently invalidates
+# every source_page in the ground-truth manifest.
+reportlab==4.4.10
+pymupdf==1.28.0
+pillow==12.1.1
+numpy==2.4.4
+
+# --- Added at Milestone 3 (ingestion) ---
+# Tesseract 5.x must also be on PATH; see the CI workflow for the apt package.
+pdfplumber==0.11.9
+pytesseract==0.3.13
