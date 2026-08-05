@@ -18,6 +18,10 @@ select = ["E", "W", "F", "I", "B", "C4", "UP"]
 known-first-party = ["pecos"]
 
 [tool.pytest.ini_options]
+[tool.pytest.ini_options]
+markers = [
+    "slow: renders PDFs or runs OCR; slower than the pure-python tests",
+]
 testpaths = ["tests"]
 pythonpath = ["src"]
 addopts = "-q"
