@@ -45,3 +45,6 @@ numpy==2.4.4
 # Tesseract 5.x must also be on PATH; see the CI workflow for the apt package.
 pdfplumber==0.11.9
 pytesseract==0.3.13
+
+# --- Added at Milestone 5 (retrieval) ---
+scikit-learn==1.8.0      # TF-IDF and truncated SVD for the LSA embedder
