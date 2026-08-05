@@ -1,5 +1,5 @@
 # Pecos Credit Intelligence
-
+[![CI](https://github.com/vamkotss/pecos-credit-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/vamkotss/pecos-credit-intelligence/actions/workflows/ci.yml)
 **A credit-memo drafting system that refuses to state a number it cannot trace
 to a page.**
 
