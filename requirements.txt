@@ -48,3 +48,6 @@ pytesseract==0.3.13
 
 # --- Added at Milestone 5 (retrieval) ---
 scikit-learn==1.8.0      # TF-IDF and truncated SVD for the LSA embedder
+
+# --- Added at Milestone 7 (credit memo agent) ---
+langgraph==1.2.10        # the memo state machine
