@@ -80,35 +80,20 @@ Full catalogue with target rates: [data dictionary](docs/data-dictionary.md).
 
 ---
 
-## Quick start
+## Quickstart
 
-```powershell
-# 1. Clone and enter
-git clone https://github.com/vamkotss/pecos-credit-intelligence.git
-cd pecos-credit-intelligence
+Requires Python 3.12 and Tesseract 5.x on PATH.
 
-# 2. Virtual environment
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-
-# 3. Dependencies
+```bash
 pip install -r requirements.txt
-
-# 4. Configuration
-Copy-Item .env.example .env      # then add your OpenAI key
-
-# 5. Verify
-$env:PYTHONPATH = "src"
-python -m pytest
+python scripts/generate_corpus.py     # 12 synthetic loan packages + ground truth
+python scripts/ingest_corpus.py       # OCR, layout, page provenance
+python scripts/chunk_corpus.py --audit
+python scripts/eval_gate.py           # 12 thresholds, ~5s, no API key
 ```
 
-Local Postgres with pgvector (needed from M5):
-
-```powershell
-docker compose up -d
-```
-
----
+The full pipeline runs offline. `ANTHROPIC_API_KEY` is only needed for
+`--drafter anthropic` and `--judge anthropic`.
 
 ## Architecture
 
