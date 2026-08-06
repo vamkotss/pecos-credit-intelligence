@@ -5,7 +5,7 @@ retrieval, evaluated RAG, and a credit-memo agent whose every figure is
 traceable to a page or to a recorded calculation.
 
 [![CI](https://github.com/vamkotss/pecos-credit-intelligence/actions/workflows/ci.yml/badge.svg)](https://github.com/vamkotss/pecos-credit-intelligence/actions/workflows/ci.yml)
-
+**[▶ Live walkthrough](https://pecos-credit-intelligence.streamlit.app/)** — eight stages, real artefacts, no install. Ask the loan file a question and watch the citations get validated.
 Pecos Capital Partners is a fictional Fort Worth lender writing $3M–$40M senior
 secured facilities. A credit analyst there reads a 180–600 page loan package —
 financial statements, tax returns, bank statements, debt schedules, broker
@@ -55,6 +55,36 @@ python scripts/review_queue.py list            # what needs a human
 `PCP-0004` is the one to read. Its memo contains the pro forma paragraph that
 flips the recommendation, and `--audit` prints the derivation of every computed
 figure with the pages its inputs came from.
+
+---
+
+## See it without running it
+
+**[The live walkthrough](https://pecos-credit-intelligence.streamlit.app/)** reads committed
+artefacts from `docs/samples/`, so it needs no corpus, no Tesseract and no API
+key. Four pages carry the project:
+
+- **Ask the loan file** — question answering scoped to one borrower, with
+  citations parsed and validated rather than trusted. Try *"what did the Phase I
+  environmental site assessment conclude?"* — nothing in the file answers it, and
+  the correct response is to say so.
+- **Ingestion** — the rotated scanned page, and what it returns before
+  orientation is corrected
+- **Memo agent** — a credit memorandum beside the derivation of every computed
+  figure
+- **Red team** — 27 attacks, and a poisoned EBITDA visibly flipping a decision
+  from DECLINE to PROCEED before an accounting identity blocks it
+
+Locally:
+
+```bash
+pip install -r app/requirements.txt
+streamlit run app/streamlit_app.py
+```
+
+`docs/samples/` is real output from a real run, regenerated with
+`python scripts/export_samples.py`. **Every number quoted below came from one of
+those files**, so the claims are checkable rather than asserted.
 
 ---
 
