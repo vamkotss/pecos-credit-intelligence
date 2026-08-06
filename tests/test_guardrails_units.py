@@ -148,7 +148,8 @@ def test_a_memo_contradicting_its_own_metrics_is_blocked():
         [_context("nothing relevant")],
     )
     assert report.blocked
-    assert "require DECLINE" in report.block_reason
+    assert "more permissive" in report.block_reason
+    assert "DECLINE" in report.block_reason
 
 
 def test_a_consistent_memo_is_released():

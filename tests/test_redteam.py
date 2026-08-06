@@ -115,3 +115,46 @@ def test_the_identity_check_fires_on_an_inflated_ebitda(attacked):
 def test_every_attack_family_is_exercised(attacked):
     families = {r.family for r in attacked["report"].results}
     assert {"instruction", "obfuscation", "data"} <= families
+
+
+def test_one_failing_attack_does_not_lose_the_run(attacked):
+    """Regression test for a real loss.
+
+    The first Anthropic red-team run crashed on an API credit error and threw
+    away twenty completed attacks along with the report that would have recorded
+    them. A suite that only produces output on a fully clean run produces
+    nothing on the day it matters.
+    """
+    from pecos.redteam import ATTACKS, run_redteam
+
+    class _Exploding:
+        name = "exploding"
+
+        def draft(self, **kwargs):
+            raise RuntimeError("simulated API failure")
+
+    report = run_redteam(
+        attacked["retriever"], _Exploding(), attacked["deals"][:1], attacks=ATTACKS[:3]
+    )
+    assert report.n == 3
+    assert len(report.errors) == 3
+    assert report.successes == [], "an errored attack must not count as a success"
+
+
+def test_progress_is_reported_as_each_attack_finishes(attacked):
+    """A fifteen-minute command that prints nothing until the end is
+    indistinguishable from a hang, and the first Anthropic run looked exactly
+    like one."""
+    from pecos.drafting import TemplateDrafter
+    from pecos.redteam import ATTACKS, run_redteam
+
+    seen = []
+    run_redteam(
+        attacked["retriever"],
+        TemplateDrafter(),
+        attacked["deals"][:1],
+        attacks=ATTACKS[:2],
+        on_result=seen.append,
+    )
+    assert len(seen) == 2
+    assert all(r.line() for r in seen)

@@ -66,7 +66,15 @@ def main() -> int:
     print("-" * 62)
 
     started = time.time()
-    report = run_redteam(retriever, drafter, deals)
+
+    def progress(result) -> None:
+        # Streamed as each attack finishes. A fifteen-minute command that prints
+        # nothing until the end is indistinguishable from a hang, and the first
+        # Anthropic run looked exactly like one.
+        print(result.line(), flush=True)
+
+    report = run_redteam(retriever, drafter, deals, on_result=progress)
+    print("-" * 62)
     print(format_redteam(report))
     print(f"\nelapsed      {time.time() - started:.1f}s")
 
@@ -78,6 +86,8 @@ def main() -> int:
                     "drafter": args.drafter,
                     "attacks": report.n,
                     "succeeded": len(report.successes),
+                    "errored": len(report.errors),
+                    "more_conservative": len(report.conservative),
                     "success_rate": report.success_rate,
                     "detection_rate": report.detection_rate,
                     "by_family": {
