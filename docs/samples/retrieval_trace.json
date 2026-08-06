@@ -1,0 +1,76 @@
+{
+  "deal": "PCP-0004",
+  "hits": [
+    {
+      "authority": 3,
+      "authority_weight": 1.0,
+      "bm25_rank": 0,
+      "dense_rank": 2,
+      "doc_status": "final",
+      "document": "02_financial_statements_comparative.pdf",
+      "final_score": 1.0,
+      "fused_score": 0.0188,
+      "page": 1,
+      "rerank_score": 1.0,
+      "section": "Statements of Income",
+      "text": "FY2023 | FY2024 | FY2025\nRevenue | 42,950,000 | 46,787,798 | 52,037,306\nCost of goods sold | (23,337,960) | (25,423,324) | (28,275,776)\nGross profit | 19,612,040 | 21,364,474 | 23,761,530\nOperating expenses | (15,515,042"
+    },
+    {
+      "authority": 3,
+      "authority_weight": 1.0,
+      "bm25_rank": 1,
+      "dense_rank": 1,
+      "doc_status": "final",
+      "document": "02_financial_statements_comparative.pdf",
+      "final_score": 0.8169,
+      "fused_score": 0.0185,
+      "page": 2,
+      "rerank_score": 0.735,
+      "section": "Balance Sheets",
+      "text": "Balance Sheets\nAll amounts in US dollars.\nFY2023 FY2024 FY2025\nASSETS\nLIABILITIES AND EQUITY"
+    },
+    {
+      "authority": 3,
+      "authority_weight": 1.0,
+      "bm25_rank": 2,
+      "dense_rank": 0,
+      "doc_status": "final",
+      "document": "07_broker_email_thread.pdf",
+      "final_score": 0.8067,
+      "fused_score": 0.0183,
+      "page": 1,
+      "rerank_score": 0.735,
+      "section": null,
+      "text": "TRINITY BEND MANUFACTURING\nCorrespondence -- Broker Cover Note\nTyler, TX | Deal reference PCP-0004 | Prepared for Pecos Capital Partners\nFrom: Priya Jelinek, Caprock Commercial Advisors\nTo: Underwriting, Pecos Capital Pa"
+    },
+    {
+      "authority": 3,
+      "authority_weight": 1.0,
+      "bm25_rank": 3,
+      "dense_rank": 3,
+      "doc_status": "final",
+      "document": "02_financial_statements_comparative.pdf",
+      "final_score": 0.7895,
+      "fused_score": 0.018,
+      "page": 3,
+      "rerank_score": 0.735,
+      "section": "Statements of Cash Flows",
+      "text": "FY2024 | FY2025\nNet income | 1,547,136 | 2,354,191\nDepreciation and amortisation | 1,667,269 | 1,709,801\nChange in accounts receivable | (389,037) | (532,142)\nChange in inventory | (382,793) | (523,600)\nChange in prepaid"
+    },
+    {
+      "authority": 3,
+      "authority_weight": 1.0,
+      "bm25_rank": 4,
+      "dense_rank": 5,
+      "doc_status": "final",
+      "document": "08_bank_statements.pdf",
+      "final_score": 0.4431,
+      "fused_score": 0.0177,
+      "page": 2,
+      "rerank_score": 0.224,
+      "section": null,
+      "text": "AMARILLO NATIONAL BANK\nCommercial Analysis Checking -- account ending 0004\nTrinity Bend Manufacturing\nTyler, TX\nStatement period: month 02, 2025"
+    }
+  ],
+  "query": "What was EBITDA in FY2025?"
+}

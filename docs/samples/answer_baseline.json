@@ -1,0 +1,11 @@
+{
+  "answer_accuracy": 0.2047244094488189,
+  "citation_accuracy": 0.2283464566929134,
+  "generator": "extractive",
+  "grounding_rate": 1.0,
+  "hallucinated_figures": 0,
+  "invented_citations": 0,
+  "over_refusal_rate": 0.0,
+  "questions": 127,
+  "refusal_accuracy": 1.0
+}

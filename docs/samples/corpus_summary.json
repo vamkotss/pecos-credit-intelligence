@@ -1,0 +1,126 @@
+{
+  "deal_summaries": [
+    {
+      "borrower_name": "Sabine Fabrication",
+      "city": "Fort Worth",
+      "current_ratio": 4.11,
+      "deal_id": "PCP-0001",
+      "defects": [
+        "restated_prior_year"
+      ],
+      "dscr": 1.45,
+      "fiscal_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "industry": "Oilfield equipment distribution",
+      "latest_ebitda": 2575918,
+      "latest_fiscal_year": 2025,
+      "latest_net_income": 745698,
+      "latest_revenue": 20453629,
+      "latest_total_debt": 8025829,
+      "leverage": 3.12,
+      "request_amount": 6200000,
+      "state": "TX"
+    },
+    {
+      "borrower_name": "Guadalupe Manufacturing",
+      "city": "Lubbock",
+      "current_ratio": 2.28,
+      "deal_id": "PCP-0002",
+      "defects": [
+        "units_in_thousands"
+      ],
+      "dscr": 1.02,
+      "fiscal_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "industry": "Commercial HVAC contracting",
+      "latest_ebitda": 3138167,
+      "latest_fiscal_year": 2025,
+      "latest_net_income": 1298172,
+      "latest_revenue": 32041248,
+      "latest_total_debt": 6680366,
+      "leverage": 2.13,
+      "request_amount": 11000000,
+      "state": "TX"
+    },
+    {
+      "borrower_name": "Palo Duro Services",
+      "city": "Odessa",
+      "current_ratio": 1.55,
+      "deal_id": "PCP-0003",
+      "defects": [
+        "rotated_scanned_page"
+      ],
+      "dscr": 0.58,
+      "fiscal_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "industry": "Specialty food manufacturing",
+      "latest_ebitda": 1057405,
+      "latest_fiscal_year": 2025,
+      "latest_net_income": 393624,
+      "latest_revenue": 15006829,
+      "latest_total_debt": 2370337,
+      "leverage": 2.24,
+      "request_amount": 3000000,
+      "state": "TX"
+    },
+    {
+      "borrower_name": "Trinity Bend Manufacturing",
+      "city": "Tyler",
+      "current_ratio": 4.2,
+      "deal_id": "PCP-0004",
+      "defects": [
+        "table_only_fact"
+      ],
+      "dscr": 2.76,
+      "fiscal_years": [
+        2023,
+        2024,
+        2025
+      ],
+      "industry": "Metal fabrication",
+      "latest_ebitda": 5387402,
+      "latest_fiscal_year": 2025,
+      "latest_net_income": 2354191,
+      "latest_revenue": 52037306,
+      "latest_total_debt": 8508027,
+      "leverage": 1.58,
+      "request_amount": 12800000,
+      "state": "TX"
+    }
+  ],
+  "deals": 12,
+  "defect_index": {
+    "near_duplicate_draft": [
+      "PCP-0007"
+    ],
+    "prompt_injection": [
+      "PCP-0005"
+    ],
+    "restated_prior_year": [
+      "PCP-0001"
+    ],
+    "rotated_scanned_page": [
+      "PCP-0003"
+    ],
+    "table_only_fact": [
+      "PCP-0004"
+    ],
+    "unanswerable_question": [
+      "PCP-0006"
+    ],
+    "units_in_thousands": [
+      "PCP-0002"
+    ]
+  },
+  "gold_facts": 127,
+  "seed": 20260804
+}

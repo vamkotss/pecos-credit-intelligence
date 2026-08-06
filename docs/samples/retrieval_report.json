@@ -1,0 +1,48 @@
+{
+  "by_defect": {
+    "near_duplicate_draft": {
+      "mrr": 1.0,
+      "n": 1,
+      "recall@1": 1.0,
+      "recall@5": 1.0
+    },
+    "prompt_injection": {
+      "mrr": 1.0,
+      "n": 1,
+      "recall@1": 1.0,
+      "recall@5": 1.0
+    },
+    "restated_prior_year": {
+      "mrr": 1.0,
+      "n": 1,
+      "recall@1": 1.0,
+      "recall@5": 1.0
+    },
+    "rotated_scanned_page": {
+      "mrr": 1.0,
+      "n": 1,
+      "recall@1": 1.0,
+      "recall@5": 1.0
+    },
+    "table_only_fact": {
+      "mrr": 1.0,
+      "n": 1,
+      "recall@1": 1.0,
+      "recall@5": 1.0
+    },
+    "units_in_thousands": {
+      "mrr": 0.3333333333333333,
+      "n": 1,
+      "recall@1": 0.0,
+      "recall@5": 1.0
+    }
+  },
+  "mrr": 0.6671957671957671,
+  "queries": 126,
+  "recall": {
+    "@1": 0.49206349206349204,
+    "@10": 1.0,
+    "@3": 0.8095238095238095,
+    "@5": 1.0
+  }
+}

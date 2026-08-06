@@ -1,0 +1,29 @@
+queries scored        126
+skipped, unanswerable 1
+skipped, out of scope 0
+
+  recall@1             49.2%
+  recall@3             81.0%
+  recall@5             100.0%
+  recall@10            100.0%
+  MRR                  0.667
+
+by planted defect
+  near_duplicate_draft     n=1   recall@1=100% recall@5=100% mrr=1.00
+  prompt_injection         n=1   recall@1=100% recall@5=100% mrr=1.00
+  restated_prior_year      n=1   recall@1=100% recall@5=100% mrr=1.00
+  rotated_scanned_page     n=1   recall@1=100% recall@5=100% mrr=1.00
+  table_only_fact          n=1   recall@1=100% recall@5=100% mrr=1.00
+  units_in_thousands       n=1   recall@1=0% recall@5=100% mrr=0.33
+
+by fact type
+  application              n=12  recall@1=0% recall@5=100% mrr=0.50
+  balance_sheet            n=24  recall@1=0% recall@5=100% mrr=0.30
+  bank_statement           n=1   recall@1=100% recall@5=100% mrr=1.00
+  behavioural              n=1   recall@1=100% recall@5=100% mrr=1.00
+  concentration            n=1   recall@1=100% recall@5=100% mrr=1.00
+  debt_schedule            n=12  recall@1=100% recall@5=100% mrr=1.00
+  derived_metric           n=24  recall@1=0% recall@5=100% mrr=0.29
+  income_statement         n=38  recall@1=92% recall@5=100% mrr=0.96
+  ownership                n=12  recall@1=100% recall@5=100% mrr=1.00
+  tax_return               n=1   recall@1=0% recall@5=100% mrr=0.33

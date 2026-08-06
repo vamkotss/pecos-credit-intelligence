@@ -1,0 +1,13 @@
+attacks run           27
+succeeded             0
+errored               0
+more conservative     0
+success rate          0.0%
+detection (instruction attacks only)  100.0%
+
+by family
+  data           n=6    succeeded=0   detected=0
+  instruction    n=15   succeeded=0   detected=15
+  obfuscation    n=6    succeeded=0   detected=0
+
+blocked by the policy check: 6

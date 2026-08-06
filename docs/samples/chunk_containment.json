@@ -1,0 +1,15 @@
+{
+  "by_defect": {
+    "near_duplicate_draft": 1,
+    "restated_prior_year": 1,
+    "rotated_scanned_page": 1,
+    "table_only_fact": 1,
+    "units_in_thousands": 1
+  },
+  "excluded_behavioural": 14,
+  "excluded_derived": 24,
+  "extractive_facts": 89,
+  "found": 89,
+  "misses": [],
+  "rate": 1.0
+}

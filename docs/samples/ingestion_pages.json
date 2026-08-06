@@ -1,0 +1,174 @@
+[
+  {
+    "deal_id": "PCP-0001",
+    "document": "01_loan_application.pdf",
+    "extractor_version": "m3.1",
+    "mean_word_confidence": null,
+    "method": "digital",
+    "page_number": 1,
+    "rotation_applied": 0,
+    "scale_evidence": null,
+    "scale_factor": 1,
+    "tables": [
+      {
+        "rows": [
+          [
+            "Field",
+            "Value"
+          ],
+          [
+            "Legal borrower name",
+            "Sabine Fabrication"
+          ],
+          [
+            "Entity type",
+            "Texas limited liability company"
+          ],
+          [
+            "Industry",
+            "Oilfield equipment distribution"
+          ],
+          [
+            "NAICS code",
+            "423830"
+          ],
+          [
+            "Year founded",
+            "1970"
+          ],
+          [
+            "Full-time employees",
+            "100"
+          ],
+          [
+            "Headquarters",
+            "Fort Worth, TX"
+          ],
+          [
+            "Facility requested",
+            "$6,200,000"
+          ],
+          [
+            "Requested structure",
+            "Senior secured term loan, 5 year"
+          ],
+          [
+            "Use of proceeds",
+            "Refinance seller notes and support a new distribution centre lease"
+          ],
+          [
+            "Most recent fiscal year end",
+            "31 December 2025"
+          ]
+        ],
+        "source": "pdfplumber_lines"
+      }
+    ],
+    "text": "SABINE FABRICATION\nCommercial Loan Application\nFort Worth, TX | Deal reference PCP-0001 | Prepared for Pecos Capital Partners\nField Value\nLegal borrower name Sabine Fabrication\nEntity type Texas limited liability company\nIndustry Oilfield equipment distribution\nNAICS code 423830\nYear founded 1970\nFull-time employees 100\nHeadquarters Fort Worth, TX\nFacility requested $6,200,000\nRequested structure Senior secured term loan, 5 year\nUse of proceeds Refinance seller notes and support a new distribution centre lease\nMost recent fiscal year end 31 December 2025\nThe undersigned certifies that the information provided in this application and in all accompanying financial statements is\ntrue and complete to the best of their knowledge.\nGustavo Kowalski, Managing Member",
+    "word_count": 110
+  },
+  {
+    "deal_id": "PCP-0001",
+    "document": "08_bank_statements.pdf",
+    "extractor_version": "m3.1",
+    "mean_word_confidence": 94.85,
+    "method": "ocr",
+    "page_number": 1,
+    "rotation_applied": 0,
+    "scale_evidence": null,
+    "scale_factor": 1,
+    "tables": [
+      {
+        "rows": [
+          [
+            "Description",
+            "Amount"
+          ],
+          [
+            "Beginning balance",
+            "1,716,249"
+          ],
+          [
+            "Total deposits and credits",
+            "1,704,469"
+          ],
+          [
+            "Total withdrawals and debits",
+            "(1,585,156)"
+          ],
+          [
+            "Ending balance",
+            "1,835,562"
+          ],
+          [
+            "Average collected balance",
+            "1,775,905"
+          ],
+          [
+            "Items deposited",
+            "187"
+          ],
+          [
+            "Insufficient funds occurrences",
+            "0"
+          ]
+        ],
+        "source": "layout_clustering"
+      }
+    ],
+    "text": "BANCFIRST\nCommercial Analysis Checking -- account ending 0001\nSabine Fabrication\nFort Worth, TX\nStatement period: month 01, 2025\nDescription Amount\nBeginning balance 1,716,249\nTotal deposits and credits 1,704,469\nTotal withdrawals and debits (1,585,156)\nEnding balance 1,835,562\nAverage collected balance 1,775,905\nItems deposited 187\nInsufficient funds occurrences 0",
+    "word_count": 47
+  },
+  {
+    "deal_id": "PCP-0001",
+    "document": "08_bank_statements.pdf",
+    "extractor_version": "m3.1",
+    "mean_word_confidence": 94.26,
+    "method": "ocr",
+    "page_number": 2,
+    "rotation_applied": 0,
+    "scale_evidence": null,
+    "scale_factor": 1,
+    "tables": [
+      {
+        "rows": [
+          [
+            "Description",
+            "Amount"
+          ],
+          [
+            "Beginning balance",
+            "1,814,883"
+          ],
+          [
+            "Total deposits and credits",
+            "1,704,469"
+          ],
+          [
+            "Total withdrawals and debits",
+            "(1,585,156)"
+          ],
+          [
+            "Ending balance",
+            "1,934,196"
+          ],
+          [
+            "Average collected balance",
+            "1,874,539"
+          ],
+          [
+            "Items deposited",
+            "194"
+          ],
+          [
+            "Insufficient funds occurrences",
+            "0"
+          ]
+        ],
+        "source": "layout_clustering"
+      }
+    ],
+    "text": "BANCFIRST\nCommercial Analysis Checking -- account ending 0001\nSabine Fabrication\nFort Worth, TX\nStatement period: month 02, 2025\nDescription Amount\nBeginning balance 1,814,883\nTotal deposits and credits 1,704,469\nTotal withdrawals and debits (1,585,156)\nEnding balance 1,934,196\nAverage collected balance 1,874,539\nItems deposited 194\nInsufficient funds occurrences 0",
+    "word_count": 47
+  }
+]

@@ -1,0 +1,11 @@
+# Dependencies for the Streamlit walkthrough only.
+#
+# Deliberately separate from the repository's requirements.txt. The pipeline
+# needs ReportLab, PyMuPDF, pdfplumber, pytesseract and the Tesseract binary;
+# the deployed app needs none of them, because it reads committed artefacts and
+# searches a committed chunk index. Pointing Streamlit Cloud at the full
+# requirements would install a document stack to render some tables.
+streamlit==1.61.1
+scikit-learn==1.8.0
+numpy==2.4.4
+anthropic==0.120.2
